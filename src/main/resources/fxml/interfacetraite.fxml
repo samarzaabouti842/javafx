@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<HBox xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="tn.esprit.Pidev.controllers.TraitementController"
+      stylesheets="@../styles/theme2.css">
+
+    <!-- Menu latéral -->
+    <VBox styleClass="sidebar" prefWidth="250">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+
+        <Text text="Menu Principal" styleClass="header-title"/>
+        
+        <VBox spacing="10" styleClass="menu-items" VBox.vgrow="ALWAYS">
+            <Button text="Tableau de bord" styleClass="menu-button"/>
+            <Button text="Traitements" styleClass="menu-button, active-menu-item"/>
+            <Button text="Prescriptions" styleClass="menu-button"/>
+            <Button text="Messagerie" styleClass="menu-button"/>
+            <Button text="Statistiques" styleClass="menu-button"/>
+        </VBox>
+
+        <Button text="Déconnexion" styleClass="menu-button, logout-button"/>
+    </VBox>
+
+    <!-- Contenu principal -->
+    <VBox HBox.hgrow="ALWAYS" styleClass="main-content">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <Text text="Gestion des Traitements" styleClass="page-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Nouveau Traitement" onAction="#ouvrirNouveauTraitement" styleClass="add-button"/>
+            <Text text="Admin Dashboard" styleClass="dashboard-text"/>
+        </HBox>
+
+        <!-- Barre de recherche et filtres -->
+        <HBox spacing="20" styleClass="search-bar">
+            <ComboBox fx:id="filterTypeComboBox" promptText="Tout" prefWidth="150">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Tout"/>
+                        <String fx:value="Médicament"/>
+                        <String fx:value="Date"/>
+                        <String fx:value="Statut"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+            
+            <TextField fx:id="searchField" promptText="Rechercher..." HBox.hgrow="ALWAYS"/>
+            
+            <HBox alignment="CENTER_RIGHT" spacing="10">
+                <Label text="Trier par:"/>
+                <ComboBox fx:id="sortField" promptText="Date">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Date"/>
+                            <String fx:value="Médicament"/>
+                            <String fx:value="Statut"/>
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+                <ComboBox fx:id="sortOrder" promptText="Décroissant">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Croissant"/>
+                            <String fx:value="Décroissant"/>
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+            </HBox>
+        </HBox>
+
+        <!-- Tableau des traitements -->
+        <TableView fx:id="traitementTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="medicamentColumn" text="Médicament"/>
+                <TableColumn fx:id="descriptionColumn" text="Description"/>
+                <TableColumn fx:id="dateColumn" text="Date"/>
+                <TableColumn fx:id="statutColumn" text="Statut"/>
+                <TableColumn fx:id="prescriptionColumn" text="Prescription"/>
+            </columns>
+            <placeholder>
+                <Label text="Aucun traitement trouvé"/>
+            </placeholder>
+        </TableView>
+
+        <!-- Pagination -->
+        <HBox alignment="CENTER" spacing="10">
+            <Button text="Précédent" onAction="#pagePrecedente"/>
+            <Label fx:id="pageLabel" text="Page 1/1"/>
+            <Button text="Suivant" onAction="#pageSuivante"/>
+        </HBox>
+
+        <!-- Actions -->
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <Button text="Ajouter" onAction="#ajouterTraitement" styleClass="action-button"/>
+            <Button text="Modifier" onAction="#modifierTraitement" styleClass="action-button"/>
+            <Button text="Supprimer" onAction="#supprimerTraitement" styleClass="action-button"/>
+            <Button text="Exporter" onAction="#exporterTraitements" styleClass="action-button"/>
+        </HBox>
+    </VBox>
+</HBox>

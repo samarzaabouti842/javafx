@@ -1,0 +1,5 @@
+ID,Prescription ID,Medicament,Dose,Description,Statut,Date,Complété,Archivé
+1,1,"Amoxicilline","2x/jour","Prendre matin et soir","En cours",2025-04-16,false,false
+2,1,"Doliprane","si besoin","En cas de douleur","En cours",2025-04-16,false,false
+3,3,"Auretuline","1x/jour","Prendre le matin","En cours",2025-04-18,false,false
+4,3,"Dolorane","si besoin","En cas de douleur","En cours",2025-04-18,false,false

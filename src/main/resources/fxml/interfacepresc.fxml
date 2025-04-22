@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+<HBox xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="tn.esprit.Pidev.controllers.PrescriptionController"
+      stylesheets="@../styles/theme2.css">
+
+    <!-- Menu latéral -->
+    <VBox styleClass="sidebar" prefWidth="250">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+
+        <Text text="Menu Principal" styleClass="header-title"/>
+
+        <VBox spacing="10" styleClass="menu-items" VBox.vgrow="ALWAYS">
+            <Button text="Tableau de bord" styleClass="menu-button"/>
+            <Button text="Traitements" styleClass="menu-button"/>
+            <Button text="Prescriptions" styleClass="menu-button, active-menu-item"/>
+            <Button text="Messagerie" styleClass="menu-button"/>
+            <Button text="Statistiques" onAction="#afficherStatistiques" styleClass="menu-button"/>
+        </VBox>
+
+        <Button text="Déconnexion" styleClass="menu-button, logout-button"/>
+    </VBox>
+
+    <!-- Contenu principal -->
+    <VBox HBox.hgrow="ALWAYS" styleClass="main-content">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <Text text="Gestion des Prescriptions" styleClass="page-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Nouvelle Prescription" onAction="#ouvrirNouvellePrescription" styleClass="add-button"/>
+            <Text text="Admin Dashboard" styleClass="dashboard-text"/>
+        </HBox>
+
+        <!-- Form for adding/editing prescriptions -->
+        <VBox spacing="10" styleClass="form-container">
+            <HBox spacing="10">
+                <Label text="Date Début:" styleClass="form-label"/>
+                <TextField fx:id="dateDebutField" promptText="yyyy-MM-dd HH:mm:ss" HBox.hgrow="ALWAYS"/>
+            </HBox>
+            <HBox spacing="10">
+                <Label text="Date Fin:" styleClass="form-label"/>
+                <TextField fx:id="dateFinField" promptText="yyyy-MM-dd HH:mm:ss" HBox.hgrow="ALWAYS"/>
+            </HBox>
+            <HBox spacing="10">
+                <Label text="Adresse:" styleClass="form-label"/>
+                <TextField fx:id="adresseField" promptText="Adresse" HBox.hgrow="ALWAYS"/>
+            </HBox>
+            <HBox spacing="10">
+                <Label text="Gmail:" styleClass="form-label"/>
+                <TextField fx:id="gmailField" promptText="Gmail" HBox.hgrow="ALWAYS"/>
+            </HBox>
+            <HBox spacing="10">
+                <Label text="Patient ID:" styleClass="form-label"/>
+                <TextField fx:id="patientIdField" promptText="Patient ID" HBox.hgrow="ALWAYS"/>
+            </HBox>
+            <HBox spacing="10">
+                <Button text="Ajouter" onAction="#ajouterPrescription" styleClass="action-button"/>
+                <Button text="Modifier" onAction="#modifierPrescription" styleClass="action-button"/>
+                <Button text="Supprimer" onAction="#supprimerPrescription" styleClass="action-button"/>
+                <Button text="Changer Statut" onAction="#changerStatut" styleClass="action-button"/>
+            </HBox>
+        </VBox>
+
+        <!-- Barre de recherche et filtres -->
+        <HBox spacing="20" styleClass="search-bar">
+            <ComboBox fx:id="filterComboBox" promptText="Tout" prefWidth="150"/>
+            <TextField fx:id="filterField" promptText="Rechercher..." HBox.hgrow="ALWAYS"/>
+            <Button text="Trier" onAction="#trierPrescriptions" styleClass="action-button"/>
+            <Button text="Réinitialiser Filtre" onAction="#reinitialiserFiltre" styleClass="action-button"/>
+        </HBox>
+
+        <!-- Tableau des prescriptions -->
+        <TableView fx:id="prescriptionTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="adresseColumn" text="Adresse" prefWidth="200"/>
+                <TableColumn fx:id="gmailColumn" text="Gmail" prefWidth="200"/>
+                <TableColumn fx:id="dateDebutColumn" text="Date Début" prefWidth="120"/>
+                <TableColumn fx:id="statutColumn" text="Statut" prefWidth="100"/>
+            </columns>
+            <placeholder>
+                <Label text="Aucune prescription trouvée" styleClass="form-label"/>
+            </placeholder>
+        </TableView>
+
+        <!-- Pagination et autres actions -->
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="Précédent" onAction="#pagePrecedente" styleClass="action-button"/>
+            <Pagination fx:id="pagination"/>
+            <Button text="Suivant" onAction="#pageSuivante" styleClass="action-button"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <CheckBox fx:id="archiveToggle" text="Voir Archivés" onAction="#basculerVueArchivées"/>
+            <Button fx:id="archiveButton" text="Archiver Expirés" onAction="#archiverPrescriptionsExpirées" styleClass="action-button"/>
+            <Button text="Exporter" onAction="#exporterPrescriptions" styleClass="action-button"/>
+        </HBox>
+
+        <!-- Statistiques -->
+        <VBox fx:id="statsPanel" spacing="10" visible="false">
+            <Label text="Statistiques" styleClass="form-label"/>
+            <Label fx:id="statsLabel" wrapText="true"/>
+            <Button text="Masquer Statistiques" onAction="#cacherStatistiques" styleClass="action-button"/>
+        </VBox>
+    </VBox>
+</HBox>

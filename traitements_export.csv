@@ -1,0 +1,21 @@
+ID,Médicament,Dose,Description,ID_Prescription
+1,Panadol,2,par jour,1
+2,Dolipran,5,trois jourss,3
+4,Aspegic,4,pa semainee,4
+5,Asperine,2,trois fois par jour,4
+7,Aspirine,2,Douleur de tête,1
+8,Paracétamol,500,Médicament pour soulager la douleur,1
+9,Paracétamol,500,Médicament pour soulager la douleur,1
+10,Paracétamol,500,Pour la douleur,0
+11,Paracétamol,500,Traitement pour la douleur,0
+13,Amarel,1,une fois matin ,2
+14,Amarel,2,au matin,2
+15,Fervex,3,par jour,5
+16,panadol,3,douleur,6
+17,Glucophage,500,medicament diabetic,4
+18,Paracetamol,500,Take after meals,1
+19,Panadol,200,Douleur tete,4
+20,Amarel,2,Diabétique,1
+21,Paracétamol,500,À prendre 3 fois par jour,1
+22,Ibuprofène,400,À prendre 2 fois par jour,2
+23,Aspernie,500,Par jour,16

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+<VBox xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="tn.esprit.Pidev.controllers.PatientDashboardController"
+      stylesheets="@../styles/dashboard.css">
+
+    <!-- Navigation Bar -->
+    <HBox styleClass="navbar" prefHeight="60">
+        <padding>
+            <Insets top="10" right="20" bottom="10" left="20"/>
+        </padding>
+        <Label text="MaSanté" styleClass="navbar-title"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Accueil" styleClass="nav-button"/>
+        <Button text="Rendez-vous" styleClass="nav-button"/>
+        <Button text="Documents" styleClass="nav-button"/>
+        <Button text="Messages" styleClass="nav-button"/>
+        <Button fx:id="logoutButton" text="Déconnexion" onAction="#logout" styleClass="nav-button, logout-button"/>
+    </HBox>
+
+    <!-- Main Content -->
+    <VBox styleClass="main-content" VBox.vgrow="ALWAYS">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+
+        <!-- Welcome Section -->
+        <VBox spacing="5">
+            <Text fx:id="welcomeText" styleClass="welcome-text"/>
+            <Text text="Voici vos prescriptions en cours" styleClass="subtitle"/>
+        </VBox>
+
+        <!-- Prescriptions List -->
+        <ScrollPane fitToWidth="true" styleClass="scroll-pane" VBox.vgrow="ALWAYS">
+            <VBox fx:id="prescriptionsContainer" spacing="15" styleClass="prescriptions-container"/>
+        </ScrollPane>
+    </VBox>
+</VBox>

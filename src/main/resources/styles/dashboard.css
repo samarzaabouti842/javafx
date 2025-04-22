@@ -1,0 +1,109 @@
+.root {
+    -fx-font-family: 'Arial';
+    -fx-background-color: #e9f0fc; /* Light blue background as in the screenshot */
+}
+
+/* Navigation Bar */
+.navbar {
+    -fx-background-color: linear-gradient(to right, #6a11cb, #2575fc); /* Gradient from purple to blue */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 5);
+}
+
+.navbar-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 5 15;
+}
+
+.nav-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-background-radius: 15;
+}
+
+.logout-button {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-background-radius: 15;
+}
+
+.logout-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Main Content */
+.main-content {
+    -fx-padding: 20;
+}
+
+/* Welcome Section */
+.welcome-text {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-fill: #2d3436; /* Dark gray for the welcome text */
+}
+
+.subtitle {
+    -fx-font-size: 14px;
+    -fx-fill: #636e72; /* Lighter gray for the subtitle */
+}
+
+/* Scroll Pane */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+/* Prescriptions Container */
+.prescriptions-container {
+    -fx-padding: 10;
+}
+
+/* Prescription Card */
+.prescription-card {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 3);
+    -fx-padding: 15;
+}
+
+/* Card Title (e.g., Date Range) */
+.card-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-fill: #2d3436; /* Dark gray for card titles */
+}
+
+/* Card Status (e.g., Statut: En cours) */
+.card-status {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+/* Card Detail (e.g., Medicament and Dose) */
+.card-detail {
+    -fx-font-size: 14px;
+    -fx-fill: #2d3436; /* Dark gray for medicament details */
+}
+
+/* Card Description (e.g., Treatment description) */
+.card-description {
+    -fx-font-size: 14px;
+    -fx-fill: #636e72; /* Lighter gray for descriptions */
+}
+
+/* No Data Text */
+.no-data-text {
+    -fx-font-size: 16px;
+    -fx-fill: #636e72;
+    -fx-text-alignment: center;
+}
