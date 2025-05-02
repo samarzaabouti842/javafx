@@ -6,88 +6,82 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.net.URL;
 
 public class MainController {
-
-    private static final Logger LOGGER = Logger.getLogger(MainController.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
     @FXML
-    void handlePatient(ActionEvent event) {
-        ouvrirFenetre("/fxml/patientDashboard.fxml");
+    private void handlePatient(ActionEvent event) {
+        ouvrirFenetre("/fxml/patientDashboard.fxml", "Vue Patient");
     }
 
     @FXML
-    void handlePrescription(ActionEvent event) {
-        ouvrirFenetre("/fxml/interfacepresc.fxml");
+    private void handlePrescription(ActionEvent event) {
+        ouvrirFenetre("/fxml/interfacepresc.fxml", "Gestion des Prescriptions");
     }
 
     @FXML
-    void handleTraitement(ActionEvent event) {
-        ouvrirFenetre("/fxml/interfacetraite.fxml");
+    private void handleTraitement(ActionEvent event) {
+        ouvrirFenetre("/fxml/interfacetraite.fxml", "Gestion des Traitements");
     }
 
     @FXML
-    void handleAide(ActionEvent event) {
-        showInfo("Pour toute assistance, veuillez contacter le support technique au 123-456-7890 ou par email à support@masante.com");
+    private void handleAide(ActionEvent event) {
+        // Display a help message
+        showInfo("Aide pour MaSanté\n\n" +
+                "Vue Patient : Gérer les informations des patients.\n" +
+                "Prescription : Créer et gérer des prescriptions.\n" +
+                "Traitement : Gérer les traitements associés aux prescriptions.\n" +
+                "Déconnexion : Quitter l'application.");
     }
 
     @FXML
-    void handleDeconnexion(ActionEvent event) {
-        Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmDialog.setTitle("Déconnexion");
-        confirmDialog.setHeaderText(null);
-        confirmDialog.setContentText("Êtes-vous sûr de vouloir vous déconnecter ?");
-
-        confirmDialog.showAndWait().ifPresent(response -> {
-            if (response == javafx.scene.control.ButtonType.OK) {
-                Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-                stage.close();
-            }
-        });
+    private void handleDeconnexion(ActionEvent event) {
+        // Close the application
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        stage.close();
     }
 
-    private void ouvrirFenetre(String fxmlPath) {
+    private void ouvrirFenetre(String fxmlFile, String title) {
         try {
-            LOGGER.info("Tentative de chargement du fichier FXML : " + fxmlPath);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            if (loader.getLocation() == null) {
-                String errorMsg = "Fichier FXML introuvable : " + fxmlPath;
-                LOGGER.severe(errorMsg);
-                showError(errorMsg);
-                return;
+            logger.info("Tentative de chargement du fichier FXML : {}", fxmlFile);
+            URL resourceUrl = getClass().getResource(fxmlFile);
+            if (resourceUrl == null) {
+                throw new IOException("Resource not found: " + fxmlFile);
             }
-
+            logger.info("Resource URL: {}", resourceUrl);
+            FXMLLoader loader = new FXMLLoader(resourceUrl);
             Parent root = loader.load();
             Stage stage = new Stage();
+            stage.setTitle(title);
             stage.setScene(new Scene(root));
-            stage.setTitle("MaSanté - " + fxmlPath.substring(fxmlPath.lastIndexOf("/") + 1, fxmlPath.lastIndexOf(".")));
             stage.show();
-            LOGGER.info("Interface chargée avec succès : " + fxmlPath);
         } catch (IOException e) {
-            String errorMsg = "Erreur lors du chargement de l'interface : " + e.getMessage();
-            LOGGER.log(Level.SEVERE, errorMsg, e);
-            showError(errorMsg);
+            logger.error("Erreur lors du chargement de l'interface : {}", e.getMessage(), e);
+            showError("Erreur lors du chargement de l'interface : " + e.getMessage());
         }
     }
 
     private void showError(String message) {
-        javafx.application.Platform.runLater(() -> {
-            Alert alert = new Alert(Alert.AlertType.ERROR, message, javafx.scene.control.ButtonType.OK);
-            alert.setTitle("Erreur");
-            alert.showAndWait();
-        });
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     private void showInfo(String message) {
-        javafx.application.Platform.runLater(() -> {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, message, javafx.scene.control.ButtonType.OK);
-            alert.setTitle("Information");
-            alert.showAndWait();
-        });
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

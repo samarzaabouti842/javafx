@@ -1,111 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
 
-<HBox xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1"
+<VBox xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="tn.esprit.Pidev.controllers.TraitementController"
-      stylesheets="@../styles/theme2.css">
+      stylesheets="@/styles/theme2.css" spacing="10" prefWidth="800" prefHeight="600">
 
-    <!-- Menu latéral -->
-    <VBox styleClass="sidebar" prefWidth="250">
-        <padding>
-            <Insets top="20" right="20" bottom="20" left="20"/>
-        </padding>
+    <!-- Title -->
+    <HBox alignment="CENTER_LEFT" spacing="20">
+        <Text text="Gestion des Traitements" styleClass="page-title"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Nouveau Traitement" onAction="#ouvrirNouveauTraitement" styleClass="add-button"/>
+        <Button text="Exporter" onAction="#exporterTraitements" styleClass="action-button"/>
+        <Text text="Admin Dashboard" styleClass="dashboard-text"/>
+    </HBox>
 
-        <Text text="Menu Principal" styleClass="header-title"/>
-        
-        <VBox spacing="10" styleClass="menu-items" VBox.vgrow="ALWAYS">
-            <Button text="Tableau de bord" styleClass="menu-button"/>
-            <Button text="Traitements" styleClass="menu-button, active-menu-item"/>
-            <Button text="Prescriptions" styleClass="menu-button"/>
-            <Button text="Messagerie" styleClass="menu-button"/>
-            <Button text="Statistiques" styleClass="menu-button"/>
-        </VBox>
-
-        <Button text="Déconnexion" styleClass="menu-button, logout-button"/>
-    </VBox>
-
-    <!-- Contenu principal -->
-    <VBox HBox.hgrow="ALWAYS" styleClass="main-content">
-        <padding>
-            <Insets top="20" right="20" bottom="20" left="20"/>
-        </padding>
-
-        <HBox alignment="CENTER_LEFT" spacing="20">
-            <Text text="Gestion des Traitements" styleClass="page-title"/>
-            <Region HBox.hgrow="ALWAYS"/>
-            <Button text="Nouveau Traitement" onAction="#ouvrirNouveauTraitement" styleClass="add-button"/>
-            <Text text="Admin Dashboard" styleClass="dashboard-text"/>
+    <!-- Form for adding/editing treatments -->
+    <VBox spacing="15" styleClass="form-container">
+        <HBox spacing="10">
+            <Label text="Prescription:" styleClass="form-label" minWidth="100"/>
+            <ComboBox fx:id="prescriptionComboBox" promptText="Sélectionner une prescription" HBox.hgrow="ALWAYS"/>
         </HBox>
-
-        <!-- Barre de recherche et filtres -->
-        <HBox spacing="20" styleClass="search-bar">
-            <ComboBox fx:id="filterTypeComboBox" promptText="Tout" prefWidth="150">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="Tout"/>
-                        <String fx:value="Médicament"/>
-                        <String fx:value="Date"/>
-                        <String fx:value="Statut"/>
-                    </FXCollections>
-                </items>
-            </ComboBox>
-            
-            <TextField fx:id="searchField" promptText="Rechercher..." HBox.hgrow="ALWAYS"/>
-            
-            <HBox alignment="CENTER_RIGHT" spacing="10">
-                <Label text="Trier par:"/>
-                <ComboBox fx:id="sortField" promptText="Date">
-                    <items>
-                        <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="Date"/>
-                            <String fx:value="Médicament"/>
-                            <String fx:value="Statut"/>
-                        </FXCollections>
-                    </items>
-                </ComboBox>
-                <ComboBox fx:id="sortOrder" promptText="Décroissant">
-                    <items>
-                        <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="Croissant"/>
-                            <String fx:value="Décroissant"/>
-                        </FXCollections>
-                    </items>
-                </ComboBox>
-            </HBox>
+        <HBox spacing="10">
+            <Label text="Médicament:" styleClass="form-label" minWidth="100"/>
+            <TextField fx:id="medicamentField" promptText="Médicament" HBox.hgrow="ALWAYS"/>
         </HBox>
-
-        <!-- Tableau des traitements -->
-        <TableView fx:id="traitementTable" VBox.vgrow="ALWAYS">
-            <columns>
-                <TableColumn fx:id="medicamentColumn" text="Médicament"/>
-                <TableColumn fx:id="descriptionColumn" text="Description"/>
-                <TableColumn fx:id="dateColumn" text="Date"/>
-                <TableColumn fx:id="statutColumn" text="Statut"/>
-                <TableColumn fx:id="prescriptionColumn" text="Prescription"/>
-            </columns>
-            <placeholder>
-                <Label text="Aucun traitement trouvé"/>
-            </placeholder>
-        </TableView>
-
-        <!-- Pagination -->
-        <HBox alignment="CENTER" spacing="10">
-            <Button text="Précédent" onAction="#pagePrecedente"/>
-            <Label fx:id="pageLabel" text="Page 1/1"/>
-            <Button text="Suivant" onAction="#pageSuivante"/>
+        <HBox spacing="10">
+            <Label text="Dose:" styleClass="form-label" minWidth="100"/>
+            <TextField fx:id="doseField" promptText="Dose" HBox.hgrow="ALWAYS"/>
         </HBox>
-
-        <!-- Actions -->
-        <HBox spacing="10" alignment="CENTER_RIGHT">
+        <HBox spacing="10">
+            <Label text="Description:" styleClass="form-label" minWidth="100"/>
+            <TextField fx:id="descriptionField" promptText="Description" HBox.hgrow="ALWAYS"/>
+        </HBox>
+        <HBox spacing="10">
+            <Label text="Statut:" styleClass="form-label" minWidth="100"/>
+            <ComboBox fx:id="statutField" promptText="Sélectionner un statut" HBox.hgrow="ALWAYS"/>
+        </HBox>
+        <HBox spacing="10">
+            <Label text="Date:" styleClass="form-label" minWidth="100"/>
+            <DatePicker fx:id="datePicker" promptText="Sélectionner une date" HBox.hgrow="ALWAYS"/>
+        </HBox>
+        <HBox spacing="10">
+            <Label text="Complété:" styleClass="form-label" minWidth="100"/>
+            <CheckBox fx:id="completedCheckBox"/>
+        </HBox>
+        <HBox spacing="10">
+            <Label text="Archivé:" styleClass="form-label" minWidth="100"/>
+            <CheckBox fx:id="archivedCheckBox"/>
+        </HBox>
+        <HBox spacing="10">
             <Button text="Ajouter" onAction="#ajouterTraitement" styleClass="action-button"/>
-            <Button text="Modifier" onAction="#modifierTraitement" styleClass="action-button"/>
-            <Button text="Supprimer" onAction="#supprimerTraitement" styleClass="action-button"/>
-            <Button text="Exporter" onAction="#exporterTraitements" styleClass="action-button"/>
+            <Button fx:id="modifierButton" text="Modifier" onAction="#modifierTraitement" styleClass="action-button"/>
+            <Button fx:id="supprimerButton" text="Supprimer" onAction="#supprimerTraitement" styleClass="action-button"/>
+            <Button fx:id="archiverButton" text="Archiver" onAction="#archiverTraitement" styleClass="action-button"/>
+            <Button text="Réinitialiser" onAction="#reinitialiserChamps" styleClass="action-button"/>
         </HBox>
     </VBox>
-</HBox>
+
+    <!-- Search and Filter Section -->
+    <HBox spacing="20" styleClass="search-bar">
+        <ComboBox fx:id="filterComboBox" promptText="Tout" prefWidth="150"/>
+        <TextField fx:id="filterField" promptText="Rechercher..." HBox.hgrow="ALWAYS"/>
+    </HBox>
+
+    <!-- Card view for treatments -->
+    <ScrollPane fitToHeight="true" VBox.vgrow="ALWAYS">
+        <FlowPane fx:id="traitementsContainer" hgap="15" vgap="15" prefWrapLength="1000" styleClass="card-container">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </FlowPane>
+    </ScrollPane>
+
+    <!-- OCR Section -->
+    <VBox spacing="10">
+        <Button text="Extraire Texte (OCR)" onAction="#extraireTexteAvecOCR" styleClass="action-button"/>
+        <TextArea fx:id="ocrResultArea" promptText="Résultat OCR" editable="false" prefHeight="100"/>
+    </VBox>
+
+    <!-- Statistics Panel -->
+    <VBox spacing="10" styleClass="stats-panel">
+        <Label text="Statistiques" styleClass="form-label"/>
+        <TextArea fx:id="statsLabel" editable="false" wrapText="true" prefHeight="100"/>
+    </VBox>
+
+    <!-- Padding for the entire VBox -->
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+</VBox>

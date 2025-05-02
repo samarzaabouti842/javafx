@@ -34,9 +34,13 @@
             <Text text="Voici vos prescriptions en cours" styleClass="subtitle"/>
         </VBox>
 
-        <!-- Prescriptions List -->
-        <ScrollPane fitToWidth="true" styleClass="scroll-pane" VBox.vgrow="ALWAYS">
-            <VBox fx:id="prescriptionsContainer" spacing="15" styleClass="prescriptions-container"/>
+        <!-- Prescriptions List (Horizontal Card View) -->
+        <ScrollPane fitToHeight="true" styleClass="scroll-pane" VBox.vgrow="ALWAYS">
+            <HBox fx:id="prescriptionsContainer" spacing="15" styleClass="prescriptions-container">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+            </HBox>
         </ScrollPane>
     </VBox>
 </VBox>

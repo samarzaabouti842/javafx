@@ -1,19 +1,21 @@
 package tn.esprit.Pidev.Models;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Prescription {
     private int id;
     private int patientId;
-    private LocalDateTime dateDeb;
-    private LocalDateTime dateFin;
+    private LocalDate dateDeb;
+    private LocalDate dateFin;
     private String adresse;
     private String gmail;
     private String statut;
     private boolean archived;
 
-    // Constructor for database retrieval (with ID)
-    public Prescription(int id, int patientId, LocalDateTime dateDeb, LocalDateTime dateFin, String adresse, String gmail, String statut, boolean archived) {
+    public Prescription() {
+    }
+
+    public Prescription(int id, int patientId, LocalDate dateDeb, LocalDate dateFin, String adresse, String gmail, String statut, boolean archived) {
         this.id = id;
         this.patientId = patientId;
         this.dateDeb = dateDeb;
@@ -23,20 +25,6 @@ public class Prescription {
         this.statut = statut;
         this.archived = archived;
     }
-
-    // Constructor for creating new prescriptions (without ID)
-    public Prescription(int patientId, LocalDateTime dateDeb, LocalDateTime dateFin, String adresse, String gmail, String statut) {
-        this.patientId = patientId;
-        this.dateDeb = dateDeb;
-        this.dateFin = dateFin;
-        this.adresse = adresse;
-        this.gmail = gmail;
-        this.statut = statut;
-        this.archived = false;
-    }
-
-    // Default constructor
-    public Prescription() {}
 
     // Getters and Setters
     public int getId() {
@@ -55,19 +43,19 @@ public class Prescription {
         this.patientId = patientId;
     }
 
-    public LocalDateTime getDateDeb() {
+    public LocalDate getDateDeb() {
         return dateDeb;
     }
 
-    public void setDateDeb(LocalDateTime dateDeb) {
+    public void setDateDeb(LocalDate dateDeb) {
         this.dateDeb = dateDeb;
     }
 
-    public LocalDateTime getDateFin() {
+    public LocalDate getDateFin() {
         return dateFin;
     }
 
-    public void setDateFin(LocalDateTime dateFin) {
+    public void setDateFin(LocalDate dateFin) {
         this.dateFin = dateFin;
     }
 

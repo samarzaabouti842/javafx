@@ -2,39 +2,30 @@ package tn.esprit.Pidev.tests;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
         try {
-            // Charger le fichier FXML depuis le dossier /fxml dans resources
-            URL fxmlLocation = getClass().getResource("/fxml/main.fxml");
-            if (fxmlLocation == null) {
-                System.err.println("Erreur : Fichier main.fxml introuvable dans /fxml !");
-                throw new IOException("Fichier main.fxml introuvable");
-            }
+            // Ajouter une vérification du java.library.path
+            System.out.println("java.library.path: " + System.getProperty("java.library.path"));
 
-            FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
-            Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-            primaryStage.setTitle("Application de Gestion Médicale");
+            // Charger l'interface principale
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            primaryStage.setTitle("Application de Gestion");
             primaryStage.setScene(scene);
-            primaryStage.setMinWidth(800);
-            primaryStage.setMinHeight(600);
             primaryStage.show();
         } catch (IOException e) {
-            System.err.println("Erreur lors du chargement de l'application : " + e.getMessage());
             e.printStackTrace();
-            System.exit(1);
-        } catch (Exception e) {
-            System.err.println("Erreur inattendue : " + e.getMessage());
-            e.printStackTrace();
-            System.exit(1);
+            System.err.println("Erreur lors du chargement de l'interface : " + e.getMessage());
         }
     }
 

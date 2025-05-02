@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.layout.Region?>
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
+<VBox xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="tn.esprit.Pidev.controllers.MainController"
-      stylesheets="@../styles/dashboard.css"
-      styleClass="main-container"
-      spacing="20"
-      alignment="CENTER">
+      stylesheets="@../styles/theme.css" alignment="CENTER" spacing="20">
 
     <!-- Navigation Bar -->
     <HBox styleClass="navbar" prefHeight="60">
@@ -27,20 +19,22 @@
         <Button text="Déconnexion" onAction="#handleDeconnexion" styleClass="nav-button, logout-button"/>
     </HBox>
 
-    <Text text="Gestion des Prescriptions Médicales"
-          styleClass="main-title"/>
+    <!-- Main Content -->
+    <VBox styleClass="main-content" alignment="CENTER" spacing="20" VBox.vgrow="ALWAYS">
+        <Text text="Système de Gestion des Traitements" styleClass="main-title"/>
+        <Text text="Bienvenue dans votre espace de gestion" styleClass="subtitle"/>
+        <HBox spacing="20">
+            <Button text="Vue Patient" onAction="#handlePatient" styleClass="action-button"/>
+            <Button text="Prescription" onAction="#handlePrescription" styleClass="action-button"/>
+            <Button text="Traitement" onAction="#handleTraitement" styleClass="action-button"/>
+        </HBox>
+    </VBox>
 
-    <HBox spacing="20" alignment="CENTER">
-        <Button text="Gérer les Prescriptions"
-                onAction="#handlePrescription"
-                styleClass="menu-button"/>
-
-        <Button text="Gérer les Traitements"
-                onAction="#handleTraitement"
-                styleClass="menu-button"/>
-
-        <Button text="Vue Patient"
-                onAction="#handlePatient"
-                styleClass="menu-button"/>
+    <!-- Footer -->
+    <HBox styleClass="footer" prefHeight="40">
+        <padding>
+            <Insets top="10" right="20" bottom="10" left="20"/>
+        </padding>
+        <Text text="2025 - Tous droits réservés" styleClass="footer-text"/>
     </HBox>
 </VBox>

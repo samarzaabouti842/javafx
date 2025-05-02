@@ -65,7 +65,7 @@
 
 /* Prescriptions Container */
 .prescriptions-container {
-    -fx-padding: 10;
+    -fx-background-color: transparent;
 }
 
 /* Prescription Card */
@@ -74,6 +74,8 @@
     -fx-background-radius: 15;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 3);
     -fx-padding: 15;
+    -fx-pref-width: 300; /* Consistent with screenshot card width */
+    -fx-pref-height: 150; /* Consistent with screenshot card height */
 }
 
 /* Card Title (e.g., Date Range) */
@@ -89,16 +91,59 @@
     -fx-font-weight: bold;
 }
 
-/* Card Detail (e.g., Medicament and Dose) */
+.status-en-cours {
+    -fx-fill: #ff8c00; /* Orange for "En cours" */
+}
+
+.status-traité {
+    -fx-fill: #008000; /* Green for "Traité" */
+}
+
+.status-résolu {
+    -fx-fill: #0000ff; /* Blue for "Résolu" */
+}
+
+.status-archivé {
+    -fx-fill: #999999; /* Gray for "Archivé" */
+}
+
+/* Card Detail (e.g., Adresse, Gmail) */
 .card-detail {
     -fx-font-size: 14px;
-    -fx-fill: #2d3436; /* Dark gray for medicament details */
+    -fx-fill: #2d3436; /* Dark gray for details */
 }
 
 /* Card Description (e.g., Treatment description) */
 .card-description {
     -fx-font-size: 14px;
     -fx-fill: #636e72; /* Lighter gray for descriptions */
+}
+
+/* Card Buttons */
+.card-action-button {
+    -fx-background-color: #2575fc; /* Blue button color matching the navbar */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 5 10;
+    -fx-background-radius: 5;
+}
+
+.card-action-button:hover {
+    -fx-background-color: #1a5ecc; /* Slightly darker blue on hover */
+}
+
+.card-action-button-secondary {
+    -fx-background-color: #ecf0f1; /* Light gray background */
+    -fx-text-fill: #333333;
+    -fx-font-weight: bold;
+    -fx-padding: 5 10;
+    -fx-background-radius: 5;
+    -fx-border-color: #d3d3d3;
+    -fx-border-width: 1;
+}
+
+.card-action-button-secondary:hover {
+    -fx-background-color: #dfe6e9; /* Slightly darker gray on hover */
 }
 
 /* No Data Text */

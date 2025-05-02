@@ -1,153 +1,82 @@
-/* Sidebar */
-.sidebar {
-    -fx-background-color: #4B3F72;
-    -fx-min-width: 200px;
-    -fx-padding: 20px;
+.root {
+    -fx-font-family: 'Arial';
+    -fx-background-color: #e9f0fc; /* Light blue background as a fallback */
+    -fx-background-image: url("../images/background.jpg"); /* Correct relative path to the image */
+    -fx-background-size: cover;
+    -fx-background-position: center;
 }
 
-.sidebar-header {
-    -fx-alignment: center;
-    -fx-padding: 0 0 30px 0;
+/* Navigation Bar */
+.navbar {
+    -fx-background-color: linear-gradient(to right, #6a11cb, #2575fc); /* Gradient from purple to blue */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 5);
 }
 
-.sidebar-title {
-    -fx-font-size: 20px;
+.navbar-title {
+    -fx-font-size: 24px;
     -fx-font-weight: bold;
-    -fx-fill: #ffffff;
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: white;
 }
 
-.menu-items {
-    -fx-spacing: 10px;
-}
-
-.menu-item {
-    -fx-background-color: #6B5B95;
-    -fx-text-fill: #ffffff;
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
     -fx-font-size: 14px;
-    -fx-padding: 10px;
-    -fx-background-radius: 5px;
-    -fx-border-radius: 5px;
-    -fx-cursor: hand;
+    -fx-padding: 5 15;
 }
 
-.menu-item:hover {
-    -fx-background-color: #8874B3;
-}
-
-.menu-item-active {
-    -fx-background-color: #1E90FF; /* Blue color for active item as in Prescription screenshot */
-    -fx-font-weight: bold;
+.nav-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-background-radius: 15;
 }
 
 .logout-button {
-    -fx-background-color: #FF4C4C;
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-background-radius: 15;
 }
 
 .logout-button:hover {
-    -fx-background-color: #FF6666;
+    -fx-background-color: rgba(255, 255, 255, 0.3);
 }
 
-/* Main content */
+/* Main Content */
 .main-content {
-    -fx-background-color: #FFFFFF;
-    -fx-padding: 20px;
-    -fx-spacing: 20px;
+    -fx-alignment: center;
 }
 
-.dashboard-header {
-    -fx-alignment: center-left;
-    -fx-padding: 0 0 20px 0;
-}
-
-.dashboard-title {
-    -fx-font-size: 24px;
+/* Main Title */
+.main-title {
+    -fx-font-size: 36px;
     -fx-font-weight: bold;
-    -fx-fill: #333333;
-    -fx-text-fill: #333333;
+    -fx-fill: #2d3436; /* Dark gray */
 }
 
-/* Form container */
-.form-container {
-    -fx-background-color: #FFFFFF;
-    -fx-padding: 15px;
-    -fx-spacing: 10px;
-    -fx-border-color: #D3D3D3;
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
-    -fx-alignment: center-left;
-}
-
-.form-label {
-    -fx-font-size: 14px;
-    -fx-text-fill: #666666;
-    -fx-pref-width: 100px; /* Align labels */
-}
-
-/* Search bar */
-.search-bar {
-    -fx-spacing: 10px;
-    -fx-padding: 10px;
-    -fx-background-color: #F5F5F5;
-    -fx-border-color: #D3D3D3;
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
-    -fx-alignment: center-left;
-}
-
-.search-input {
-    -fx-pref-width: 200px;
-    -fx-background-color: #F5F5F5;
-    -fx-border-color: #D3D3D3;
-    -fx-border-radius: 5px;
-    -fx-padding: 5px;
-}
-
-.btn-primary {
-    -fx-background-color: #6B5B95; /* Purple buttons as in Treatments screenshot */
-    -fx-text-fill: #ffffff;
-    -fx-font-size: 14px;
-    -fx-padding: 5px 15px;
-    -fx-background-radius: 5px;
-    -fx-cursor: hand;
-}
-
-.btn-primary:hover {
-    -fx-background-color: #8874B3;
-}
-
-.btn-secondary {
-    -fx-background-color: #A9A9A9;
-    -fx-text-fill: #ffffff;
-    -fx-font-size: 14px;
-    -fx-padding: 5px 15px;
-    -fx-background-radius: 5px;
-    -fx-cursor: hand;
-}
-
-.btn-secondary:hover {
-    -fx-background-color: #C0C0C0;
-}
-
-/* Table */
-.table-container {
-    -fx-spacing: 10px;
-}
-
-.table-title {
+/* Subtitle */
+.subtitle {
     -fx-font-size: 18px;
-    -fx-font-weight: bold;
-    -fx-fill: #333333;
-    -fx-text-fill: #333333;
+    -fx-fill: #2d3436; /* Dark gray */
 }
 
-.dashboard-table {
-    -fx-background-color: #FFFFFF;
-    -fx-border-color: #D3D3D3;
-    -fx-table-cell-border-color: #D3D3D3;
+/* Action Buttons */
+.action-button {
+    -fx-background-color: #2575fc; /* Blue matching the navbar gradient */
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-background-radius: 10;
 }
 
-.dashboard-table .column-header {
-    -fx-background-color: #F5F5F5;
-    -fx-font-weight: bold;
+.action-button:hover {
+    -fx-background-color: #1a5ecc; /* Slightly darker blue on hover */
+}
+
+/* Footer */
+.footer {
+    -fx-alignment: center;
+}
+
+.footer-text {
+    -fx-font-size: 14px;
+    -fx-fill: #2d3436; /* Dark gray */
 }
